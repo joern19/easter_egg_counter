@@ -22,3 +22,11 @@ jobs:
         java-version: 1.11
     - name: Build with Maven
       run: mvn package -Pnative -Dquarkus.native.container-build=true -Dquarkus.container-image.build=true
+    - name: Build and push Docker images
+      uses: docker/build-push-action@v1.1.0
+      with:
+        username: joern19
+        password: ${DOCKERHUB_PASSWORD}
+        tags: latest
+        dockerfile: ./src/main/docker/Dockerfile.native
+        cache_froms: registry.access.redhat.com/ubi8/ubi-minimal:8.1
