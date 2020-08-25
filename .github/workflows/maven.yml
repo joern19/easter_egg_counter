@@ -24,7 +24,7 @@ jobs:
       uses: actions/upload-artifact@v2.1.4
       with:
         path: ./target/*-runner
-        error: No Artifact found.
+        if-no-files-found: error
 
   pushToDockerhub:
     runs-on: ubuntu-latest
