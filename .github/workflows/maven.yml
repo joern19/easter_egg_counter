@@ -29,7 +29,7 @@ jobs:
       uses: docker/build-push-action@v1.1.0
       with: 
         username: joern19
-        password: ${{ secrets.GITHUB_PASSWORD }}
+        password: ${{ secrets.KEY_GITHUB }}
         registry: docker.pkg.github.com
         dockerfile: ./src/main/docker/Dockerfile.native
         cache_froms: registry.access.redhat.com/ubi8/ubi-minimal:8.1
