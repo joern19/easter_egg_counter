@@ -1,11 +1,17 @@
 # Easter Egg Counter
 This is a very small rest API for a counter on my Website.
 
+----------
+\
+&nbsp;
+
 # Installation
 
 [Pull from Dockerhub](Pull-from-Dockerhub-:arrow_down:) or [Build from sources](Build-from-sources-:hammer:)
 
 [Run the container](Run-the-container-:whale:)
+
+----------
 
 ## Pull from Dockerhub :arrow_down:
 
@@ -13,11 +19,11 @@ This is a very small rest API for a counter on my Website.
 docker pull joern19/quarkus-counter:latest
 ```
 
-## Build from sources :hammer:
+### Build from sources :hammer:
 
 Building the native Executable Binary
 ```bash
-./mvnw package -Pnative -Dquarkus.native.container-build=true -Dquarkus.container-image.build=true 
+mvn package -Pnative -Dquarkus.native.container-build=true
 ```
 
 Containerize it
@@ -25,12 +31,18 @@ Containerize it
 docker build -f src/main/docker/Dockerfile.native -t joern19/quarkus-counter:custom .
 ```
 
-## Run the container :whale:
+### Run the container :whale:
 
 ```bash
 docker run -p8080:8080 joern19/quarkus-counter -e MONGODB_CONNECTION_STRING=<your connection string> -e DATABASE_NAME=<your database Name>
 ```
 
+----------
+\
+\
+\
+\
+&nbsp;
 
 # Endpoints
 name | method | endpoint | returns | description
