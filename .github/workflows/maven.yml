@@ -11,9 +11,7 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
     - name: Set up JDK 1.11
@@ -21,4 +19,21 @@ jobs:
       with:
         java-version: 1.11
     - name: Build with Maven
-      run: mvn package -Pnative -Dquarkus.native.container-build=true -Dquarkus.container-image.build=true
+      run: mvn package -Pnative -Dquarkus.native.container-build=true
+    - name: Upload build artifact
+      uses: actions/upload-artifact@v2.1.4
+      with:
+        path: ./target/*-runner
+        if-no-files-found: error
+    - name: Push to Github packages
+      uses: docker/build-push-action@v1.1.0
+      with: 
+        username: joern19
+        password: ${{ secrets.GITHUB_PASSWORD }}
+        registry: docker.pkg.github.com
+        dockerfile: ./src/main/docker/Dockerfile.native
+        cache_froms: registry.access.redhat.com/ubi8/ubi-minimal:8.1
+        tag_with_ref: true
+        tag_with_sha: true
+        tags: docker.pkg.github.com/joern19/easter_egg_counter/quarkus-counter:latest
+        repository: joern19/easter_egg_counter/quarkus-counter:latest
