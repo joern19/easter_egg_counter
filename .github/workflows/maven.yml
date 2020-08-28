@@ -33,5 +33,5 @@ jobs:
         registry: docker.pkg.github.com
         dockerfile: ./src/main/docker/Dockerfile.native
         cache_froms: registry.access.redhat.com/ubi8/ubi-minimal:8.1
-        repository: joern19/easter_egg_counter/quarkus-counter
+        repository: docker.pkg.github.com/joern19/easter_egg_counter/quarkus-counter
         tags: latest
